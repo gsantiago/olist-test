@@ -7,6 +7,8 @@ export default {
     placeholder: '#9499B3',
     border: '#B6B9D0',
     error: '#F79682',
-    success: '#1FE6A8'
+    success: '#1FE6A8',
+    warning: '#F7BC1C',
+    light: '#EAEAF4'
   }
 }
