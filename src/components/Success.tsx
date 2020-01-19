@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import Title from './Title'
 import theme from '../config/theme'
 
 export default function Success () {
@@ -29,24 +30,14 @@ const Icon = styled.div`
   border: 3px solid ${theme.colors.successDark};
   border-radius: 100%;
   background: transparent url('${require('../images/check.svg')}') center no-repeat;
-`
-
-const Title = styled.h1`
-  text-align: center;
-  font-family: ${theme.fonts.primary};
-  font-size: 22px;
-  font-weight: normal;
-  color: ${theme.colors.textDark};
-  margin-top: 16px;
-  margin-bottom: 10px;
-  padding: 0;
+  margin-bottom: 16px;
 `
 
 const Text = styled.p`
   color: ${theme.colors.textDark};
   font-family: ${theme.fonts.primary};
   font-size: 16px;
-  margin: 0;
+  margin: 10px 0 0 0;
   padding: 0;
   line-height: 27px;
   max-width: 200px;
