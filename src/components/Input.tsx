@@ -33,6 +33,7 @@ const StyledInput = styled.input`
     [InputState.none]: theme.colors.border
   }, 'hotpink')};
   box-shadow: inset 0px 3px 3px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
 
   &::placeholder {
     opacity: 1;
