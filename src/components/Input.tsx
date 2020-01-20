@@ -6,7 +6,7 @@ import { InputState } from '../config/types'
 
 export default function Input (props: InputProps) {
   return (
-    <StyledInput {...(props as any)} />
+    <InputStyled {...(props as any)} />
   )
 }
 
@@ -18,7 +18,7 @@ export interface InputProps extends HTMLProps<HTMLInputElement> {
   state?: InputState
 }
 
-const StyledInput = styled.input`
+const InputStyled = styled.input`
   display: flex;
   align-items: center;
   width: 100%;
