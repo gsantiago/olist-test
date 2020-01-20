@@ -46,6 +46,10 @@ const Wrapper = styled.div`
   width: 100%;
   padding: 40px;
   box-sizing: border-box;
+
+  @media screen and (max-width: 400px) {
+    padding: 5px;
+  }
 `
 
 const Section = styled.section`
@@ -55,4 +59,8 @@ const Section = styled.section`
   padding: 60px 70px;
   border:  3px solid #F2F2F2;
   box-sizing: border-box;
+
+  @media screen and (max-width: 400px) {
+    padding: 20px;
+  }
 `
