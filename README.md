@@ -12,7 +12,7 @@ with the following stack:
 
 ## preview
 
-<p style="text-align: center">
+<p align="center">
   <img src="./docs/preview.gif" />
 </p>
 
