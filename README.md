@@ -13,7 +13,7 @@ with the following stack:
 ## preview
 
 <p style="text-align: center">
-  ![preview example](./docs/preview.gif)
+  <img src="./docs/preview.gif" />
 </p>
 
 ## setup
