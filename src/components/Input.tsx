@@ -27,6 +27,7 @@ const StyledInput = styled.input`
   padding: 0 10px;
   font-family: ${theme.fonts.primary};
   font-size: 16px;
+  border-radius: 0;
   border: 1px solid;
   border-color: ${switchProp('state', {
     [InputState.invalid]: theme.colors.error,
