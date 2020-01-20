@@ -1,44 +1,173 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# olist front-end test
 
-## Available Scripts
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
+with the following stack:
 
-In the project directory, you can run:
+- [Typescript](https://www.typescriptlang.org/)
+- [React](https://reactjs.org/)
+- [Styled Components](https://styled-components.com/)
+- [React Final Form](https://github.com/final-form/react-final-form)
+- [@polvo-labs/form-utils](https://github.com/polvo-labs/form-utils) (developed by myself)
+- [Storybook](https://storybook.js.org/)
 
-### `yarn start`
+## setup
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### requirements
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- NPM or Yarn
+- Node >= v10.x
 
-### `yarn test`
+### install all dependencies
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+NPM: `npm install`
+Yarn: `yarn`
 
-### `yarn build`
+### run the project
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+NPM: `npm start`
+Yarn: `yarn start`
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### run the styleguide
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+NPM: `npm run storybook`
+Yarn: `yarn storybook`
 
-### `yarn eject`
+## `generateRules(rules: PasswordRule[])`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+I've created a small function to handle the password validation. It can receive any sort and amount of validations for
+your password.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```js
+const { validates, isValid } = generateRules([
+  {
+    message: 'At least 6 characters',
+    test: value => value.length >= 6
+  },
+  {
+    message: 'At least an uppercase letter',
+    test: value => /[A-Z]/g.test(value)
+  },
+  {
+    message: 'At least a digit',
+    test: value => /[0-9]/g.test(value)
+  }
+])
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Both, `validates` and `isValid` accepts a string. The first returns an array of `{ message: string, passes: boolean }` for
+each rule created. The latter just returns a boolean indicating if all rules were fulfilled.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```js
+validates('') 
+/* => [
+  {
+    message: 'At least 6 characters',
+    passes: false
+  },
+  {
+    message: 'At least an uppercase letter',
+    passes: false
+  },
+  {
+    message: 'At least a digit',
+    passes: false
+  }
+]
+*/
 
-## Learn More
+validates('ABC1')
+/* => [
+  {
+    message: 'At least 6 characters',
+    passes: false
+  },
+  {
+    message: 'At least an uppercase letter',
+    passes: true
+  },
+  {
+    message: 'At least a digit',
+    passes: true
+  }
+]
+*/
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```js
+isValid('') // false
+isValid('something') // false
+isValid('ABC1') // false
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+isValid('aA123123') // true
+```
+
+This way, it's very easy to add or remove password rules. If you want more rules, just add them to the array:
+
+```js
+[
+  {
+    message: 'At least 6 characters',
+    test: value => value.length >= 6
+  },
+  {
+    message: 'At least an uppercase letter',
+    test: value => /[A-Z]/g.test(value)
+  },
+  {
+    message: 'At least a digit',
+    test: value => /[0-9]/g.test(value)
+  },
+  {
+    message: 'At least a special character (!@#$%&)',
+    test: value => /[!@#$%&]/g.test(value)
+  },
+  {
+    message: 'Should not contain your own name',
+    test: value => value.indexOf(formValues['name']) === -1
+  },
+  {
+    message: 'Should not contain your email',
+    test: value => value.indexOf(formValues['email']) === -1
+  }
+]
+```
+
+And that's how the `<PasswordStrength />` component would looks like with the rules above:
+
+![Extra rules example](./docs/extra-rules.png)
+
+## `<PasswordStrength />`
+
+The `<PasswordStrength />` component is only visual and don't hold any logic for password validating. This is up to
+the `generateRules` function.
+
+This components just accepts two props:
+
+- `value: string` the password value, usually hold in the form state.
+- `rules: PasswordRuleResult[]` the array that `validates` returns.
+
+And that how the code should look like:
+
+```jsx
+const { validates, isValid } = generateRules([
+  {
+    message: 'Pelo menos 6 caracteres',
+    test: value => value.length >= 6
+  },
+  {
+    message: 'Pelo menos 1 letra maiúscula',
+    test: value => /[A-Z]/g.test(value)
+  },
+  {
+    message: 'Pelo menos 1 número',
+    test: value => /[0-9]/g.test(value)
+  }
+])
+
+// ...
+
+<PasswordStrength
+  value={formValues['password']}
+  rules={validates(formValues['password'])}
+/>
+```

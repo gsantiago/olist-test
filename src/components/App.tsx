@@ -1,17 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
 import Logo from './Logo'
 import FormSignup from './FormSignup'
+import Success from './Success'
 import theme from '../config/theme'
 
 export default function App () {
+  const [ isDone, setIsDone ] = useState<boolean>(false)
+
   return (
     <React.Fragment>
       <GlobalStyles />
       <Wrapper>
         <Section>
           <Logo />
-          <FormSignup onSubmit={console.log} />
+          {isDone ? (
+            <Success />
+          ) : (
+            <FormSignup
+              onSubmit={() => new Promise(
+                () => setTimeout(
+                  () => setIsDone(true),
+                  350
+                )
+              )}
+            />
+          )}
         </Section>
       </Wrapper>
     </React.Fragment>
@@ -31,6 +45,7 @@ const Wrapper = styled.div`
   justify-content: center;
   width: 100%;
   padding: 40px;
+  box-sizing: border-box;
 `
 
 const Section = styled.section`
@@ -39,5 +54,5 @@ const Section = styled.section`
   background-color: #fff;
   padding: 60px 70px;
   border:  3px solid #F2F2F2;
-  border-box: border-size;
+  box-sizing: border-box;
 `

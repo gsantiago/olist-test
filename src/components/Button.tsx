@@ -14,6 +14,7 @@ export default function Button (props: ButtonProps) {
         <img
           src={require('../images/loading.gif')}
           height={40}
+          alt='loading'
         />
       ) : (
         title
@@ -28,7 +29,7 @@ export interface ButtonProps {
   loading?: boolean
 }
 
-const Container = styled.button.attrs({ type: 'button' })`
+const Container = styled.button.attrs({ type: 'submit' })`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,8 +44,7 @@ const Container = styled.button.attrs({ type: 'button' })`
   color: #fff;
   cursor: pointer;
 
-  &:not([disabled]):hover, {
-  &:not([disabled]):active {
+  &:not([disabled]):hover {
     background-color: ${theme.colors.successDark};
   }
 

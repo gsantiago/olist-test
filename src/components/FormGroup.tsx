@@ -25,7 +25,7 @@ export interface FormGroupProps {
 }
 
 const Container = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 `
 
 const LabelContainer = styled.div`

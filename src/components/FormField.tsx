@@ -2,6 +2,7 @@ import React, { useMemo } from 'react'
 import {Field, FieldProps} from 'react-final-form'
 import nanoId from 'nanoid'
 import FormGroup from './FormGroup'
+import { InputState } from '../config/types'
 
 export default function FormField (props: FormFieldProps) {
   const id = useMemo(() => nanoId(), [])
@@ -14,15 +15,21 @@ export default function FormField (props: FormFieldProps) {
   } = props
 
   return (
-    <Field {...rest}>
+    <Field
+      {...rest}
+      parse={value => value}
+    >
       {({ meta, input }) => (
         <FormGroup
           htmlFor={id}
           label={label}
-          error={meta.touched && meta.error ? meta.error : ''}
+          error={meta.submitFailed && meta.error ? meta.error : ''}
         >
           <Component
             id={id}
+            state={input.value ? (
+              meta.error ? InputState.invalid : InputState.valid
+            ) : InputState.none}
             {...input}
           />
           {children}

@@ -12,6 +12,6 @@ const TitleStyled = styled.h1`
   font-size: 22px;
   font-weight: normal;
   color: ${theme.colors.textDark};
-  margin: 0;
+  margin: 20px 0;
   padding: 0;
 `
