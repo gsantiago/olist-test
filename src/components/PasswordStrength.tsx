@@ -88,7 +88,7 @@ const getColor = (rate: number): string => {
 }
 
 const Container = styled.div`
-  
+  margin-top: 10px;
 `
 
 const Indicators = styled.div`
