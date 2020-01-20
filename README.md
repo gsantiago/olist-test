@@ -171,3 +171,21 @@ const { validates, isValid } = generateRules([
   rules={validates(formValues['password'])}
 />
 ```
+
+### how the indicators work
+
+1. If the given value is empty, set all light:
+
+![empty password](./docs/rules1.png)
+
+2. The requirements were partially fulfilled, set only the first one to red:
+
+![partially fulfilled](./docs/rules2.png)
+
+3. The requirements were mostly fulfilled, set the first two to yellow:
+
+![mostly fulfilled](./docs/rules3.png)
+
+4. The requirements were fully fulfilled, set all green:
+
+![fully fulfilled](./docs/rules4.png)
