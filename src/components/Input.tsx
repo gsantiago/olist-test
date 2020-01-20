@@ -16,7 +16,6 @@ Input.defaultProps = {
 
 export interface InputProps extends HTMLProps<HTMLInputElement> {
   state?: InputState
-  as?: any
 }
 
 const StyledInput = styled.input`
