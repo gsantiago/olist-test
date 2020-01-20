@@ -11,6 +11,7 @@ export default {
     success: '#1FE6A8',
     successDark: '#17D499',
     warning: '#F7BC1C',
-    light: '#EAEAF4'
+    light: '#EAEAF4',
+    background: '#f5f5fb'
   }
 }

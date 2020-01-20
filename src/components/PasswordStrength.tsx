@@ -16,13 +16,13 @@ export default function PasswordStrength (props: PasswordStrengthProps) {
     <Container>
       <Indicators>
         <Indicator
-          color={rate > 0 && color}
+          style={rate > 0 ? { backgroundColor: color } : {}}
         />
         <Indicator
-          color={rate >= 0.5 && color}
+          style={rate >= 0.5 ? { backgroundColor: color } : {}}
         />
         <Indicator
-          color={rate === 1 && color}
+          style={rate === 1 ? { backgroundColor: color } : {}}
         />
       </Indicators>
       {rules.map(rule => (
@@ -101,7 +101,7 @@ const Indicator = styled.div`
   width: calc(33.33% - 3px);
   height: 8px;
   border-radius: 10px;
-  background-color: ${ifProp('color', prop('color'), theme.colors.light)};
+  background-color: ${theme.colors.light};
 `
 
 const Validation = styled.div`

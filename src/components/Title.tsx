@@ -1,9 +1,9 @@
-import React, { HTMLProps } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import theme from '../config/theme'
 
-export default function Title (props: HTMLProps<HTMLHeadingElement>) {
-  return <TitleStyled {...props} />
+export default function Title (props: { children: string }) {
+  return <TitleStyled>{props.children}</TitleStyled>
 }
 
 const TitleStyled = styled.h1`
