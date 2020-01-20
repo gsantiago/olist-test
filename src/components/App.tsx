@@ -21,7 +21,7 @@ export default function App () {
               onSubmit={() => new Promise(
                 () => setTimeout(
                   () => setIsDone(true),
-                  350
+                  1000
                 )
               )}
             />

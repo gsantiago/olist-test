@@ -10,6 +10,12 @@ with the following stack:
 - [@polvo-labs/form-utils](https://github.com/polvo-labs/form-utils) (developed by myself)
 - [Storybook](https://storybook.js.org/)
 
+## preview
+
+<p style="text-align: center">
+  ![preview example](./docs/preview.gif)
+</p>
+
 ## setup
 
 ### requirements
@@ -20,16 +26,19 @@ with the following stack:
 ### install all dependencies
 
 NPM: `npm install`
+
 Yarn: `yarn`
 
 ### run the project
 
 NPM: `npm start`
+
 Yarn: `yarn start`
 
 ### run the styleguide
 
 NPM: `npm run storybook`
+
 Yarn: `yarn storybook`
 
 ## `generateRules(rules: PasswordRule[])`
